@@ -38,17 +38,29 @@
         <div class="contact-content">
             <h2 class="sectionTitle">Contact Me</h2>
             <p>Let's connect! Feel free to reach out for collaborations or project inquiries.</p>
-            <div class="contact-links">
-                <a href="mailto:winstido@gmail.com" title="Email">
-                    <i class='bx bx-envelope'></i>winstido@gmail.com
-                </a>
-                <a href="tel:+639876543210" title="Phone">
-                    <i class='bx bx-phone'></i>0987654321
-                </a>
-                <a href="https://github.com/win-stdio" target="_blank" rel="noopener" title="GitHub">
-                    <i class='bx bxl-github'></i>@win.stdio
-                </a>
+            <div class="contact-btns">
+            <a href="mailto:herwindatinguinoo00@gmail.com" class="contact-btn contact-btn--gmail" title="Gmail">
+                <i class='bx bxl-gmail'></i> Gmail
+            </a>
+            <a href="https://github.com/win-stdio" target="_blank" rel="noopener" class="contact-btn contact-btn--github" title="GitHub">
+                <i class='bx bxl-github'></i> GitHub
+            </a>
+            <a href="https://www.facebook.com/thisiswin" target="_blank" rel="noopener" class="contact-btn contact-btn--facebook" title="Facebook">
+                <i class='bx bxl-facebook'></i> Facebook
+            </a>
+            <a href="https://github.com/Weiyhn" target="_blank" rel="noopener" class="contact-btn contact-btn--discord" title="Discord">
+                <i class='bx bxl-discord'></i> Discord
+            </a>
             </div>
+            <form class="contact-form" action="https://formsubmit.co/herwindatinguinoo00@gmail.com" method="POST">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <input type="text" name="_subject" placeholder="Subject" required>
+                <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
             <p class="copyright">&copy; 2025 WinPage. All rights reserved.</p>
         </div>
     </footer>`;
@@ -63,6 +75,13 @@
     /* ---- Inject footer after <main> (skip if already exists) ---- */
     if (main && !document.body.classList.contains('welcome-only-body') && !document.getElementById('contact-footer')) {
         main.insertAdjacentHTML('afterend', footerHTML);
+    }
+
+    /* ---- Set form _next to current page ---- */
+    const contactForm = document.querySelector('.contact-form');
+    if (contactForm) {
+        const nextInput = contactForm.querySelector('input[name="_next"]');
+        if (nextInput) nextInput.value = window.location.href;
     }
 
     /* ---- Hamburger toggle ---- */

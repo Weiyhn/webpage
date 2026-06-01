@@ -777,33 +777,132 @@ body {
     margin-bottom: 20px; 
     font-size: 2em; 
 }
-.contact-links { 
-    display: flex; 
-    justify-content: center; 
-    flex-wrap: wrap; 
-    gap: 20px 40px; 
-    margin: 30px 0; 
-}
-.contact-links a { 
-    color: var(--clr-light); 
-    display: flex; 
-    align-items: center; 
-    gap: 8px; 
-    font-size: 1.1em; 
-    transition: color 0.3s, transform 0.3s; 
-}
-.contact-links a:hover { 
-    color: var(--clr-accent); 
-    transform: translateY(-2px); 
-}
-.contact-links i { 
-    font-size: 1.5em; 
-}
 .copyright { 
     margin-top: 20px; 
     font-size: 0.9em; 
     color: var(--clr-medium-light); 
 }
+
+/* Contact social buttons */
+.contact-btns { 
+    display: flex; 
+    justify-content: center; 
+    flex-wrap: wrap; 
+    gap: 16px; 
+    margin: 30px 0; 
+}
+.contact-btn { 
+    display: inline-flex; 
+    align-items: center; 
+    gap: 10px; 
+    padding: 12px 28px; 
+    border-radius: 8px; 
+    font-size: 1.05em; 
+    font-weight: 600; 
+    color: var(--clr-light); 
+    border: 2px solid transparent; 
+    transition: all 0.3s ease; 
+    cursor: pointer; 
+}
+.contact-btn i { 
+    font-size: 1.5em; 
+}
+.contact-btn--gmail { 
+    background: #c71610; 
+    border-color: #c71610; 
+}
+.contact-btn--gmail:hover { 
+    background: transparent; 
+    color: #c71610; 
+}
+.contact-btn--github { 
+    background: #333; 
+    border-color: #333; 
+}
+.contact-btn--github:hover { 
+    background: transparent; 
+    color: #f3f3f3; 
+    border-color: #f3f3f3; 
+}
+.contact-btn--facebook { 
+    background: #1877f2; 
+    border-color: #1877f2; 
+}
+.contact-btn--facebook:hover { 
+    background: transparent; 
+    color: #1877f2; 
+}
+.contact-btn--discord { 
+    background: #5865f2; 
+    border-color: #5865f2; 
+}
+.contact-btn--discord:hover { 
+    background: transparent; 
+    color: #5865f2; 
+}
+
+/* Contact form */
+.contact-form { 
+    max-width: 600px; 
+    margin: 30px auto 0; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 16px; 
+}
+.contact-form input,
+.contact-form textarea { 
+    width: 100%; 
+    padding: 14px 18px; 
+    border-radius: 8px; 
+    background: rgba(255,255,255,0.08); 
+    border: 2px solid rgba(255,255,255,0.15); 
+    color: var(--clr-light); 
+    font-family: var(--font-primary); 
+    font-size: 1em; 
+    transition: border-color 0.3s; 
+    user-select: auto; 
+}
+.contact-form input:focus,
+.contact-form textarea:focus { 
+    border-color: var(--clr-accent); 
+    background: rgba(255,255,255,0.12); 
+}
+.contact-form input::placeholder,
+.contact-form textarea::placeholder { 
+    color: rgba(255,255,255,0.4); 
+}
+.contact-form textarea { 
+    resize: vertical; 
+    min-height: 120px; 
+}
+.contact-form button { 
+    padding: 14px 32px; 
+    border-radius: 8px; 
+    background: var(--clr-accent); 
+    color: var(--clr-dark); 
+    font-family: var(--font-primary); 
+    font-size: 1.1em; 
+    font-weight: 700; 
+    border: 2px solid var(--clr-accent); 
+    cursor: pointer; 
+    transition: all 0.3s ease; 
+}
+.contact-form button:hover { 
+    background: transparent; 
+    color: var(--clr-accent); 
+}
+
+@media (max-width: 768px) {
+    .contact-btn { 
+        flex: 1 1 120px; 
+        justify-content: center; 
+        padding: 10px 18px; 
+    }
+    .contact-form { 
+        max-width: 100%; 
+    }
+}
+
 /* ============================================================== */
 /* 9. COPY PROTECTION + WATERMARK                                  */
 /* ============================================================== */
