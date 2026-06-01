@@ -1,0 +1,13 @@
+node_modules/
+.vscode/
+.opencode/
+.qodo/
+*.log
+.DS_Store
+Thumbs.db
+
+# Large files excluded for compression
+img/francess.jpg
+vid/blue.mp4
+vid/chicken.mp4
+vid/sintonado.mp4

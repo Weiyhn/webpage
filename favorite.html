@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Win's Portfolio - Favorite Pictures</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="asset/L0.png" type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&display=swap" />
+
+    <style>
+        /* ── ALBUM PAGE STYLES ── */
+        .album-page {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px 60px;
+        }
+
+        /* Page title */
+        .album-title {
+            font-family: 'Caveat', cursive;
+            font-size: 3.5em;
+            color: var(--clr-accent);
+            text-align: center;
+            margin-bottom: 8px;
+            text-shadow: 0 0 20px rgba(255,0,255,0.4);
+        }
+        .album-title-line {
+            width: 60%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--clr-accent), transparent);
+            margin: 0 auto 50px;
+        }
+
+        /* ── ALBUM SECTION (chapter) ── */
+        .album-chapter {
+            margin-bottom: 70px;
+            position: relative;
+        }
+
+        /* Chapter label — looks like a sticky note tab */
+        .album-chapter-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Caveat', cursive;
+            font-size: 2em;
+            font-weight: 700;
+            color: var(--clr-dark);
+            background: var(--clr-accent);
+            padding: 6px 24px 6px 16px;
+            margin-bottom: 30px;
+            clip-path: polygon(0 0, 100% 0, 94% 100%, 0 100%);
+            box-shadow: 4px 4px 12px rgba(0,0,0,0.5);
+        }
+        .album-chapter-label i { font-size: 0.9em; }
+
+        /* ── POLAROID GRID ── */
+        .polaroid-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        /* Each polaroid card */
+        .polaroid {
+            background: #f5f0e8;
+            padding: 12px 12px 50px;
+            width: 220px;
+            box-shadow:
+                0 4px 6px rgba(0,0,0,0.4),
+                0 8px 24px rgba(0,0,0,0.3),
+                inset 0 0 0 1px rgba(0,0,0,0.08);
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.35s cubic-bezier(.175,.885,.32,1.275),
+                        box-shadow 0.35s ease,
+                        z-index 0s;
+            flex-shrink: 0;
+        }
+
+        /* Random subtle rotations — assigned via nth-child */
+        .polaroid:nth-child(3n+1) { transform: rotate(-2.5deg); }
+        .polaroid:nth-child(3n+2) { transform: rotate(1.8deg); }
+        .polaroid:nth-child(3n)   { transform: rotate(-0.8deg); }
+        .polaroid:nth-child(5n+1) { transform: rotate(3deg); }
+        .polaroid:nth-child(5n+3) { transform: rotate(-1.5deg); }
+
+        .polaroid:hover {
+            transform: rotate(0deg) scale(1.08) translateY(-8px) !important;
+            box-shadow:
+                0 16px 40px rgba(0,0,0,0.6),
+                0 0 0 2px var(--clr-accent),
+                0 0 30px rgba(255,0,255,0.25);
+            z-index: 100;
+        }
+
+        /* Photo area */
+        .polaroid-img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            display: block;
+            background: #ccc;
+            filter: contrast(1.02) saturate(0.95);
+        }
+
+        /* Caption area */
+        .polaroid-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 8px 12px 10px;
+            text-align: center;
+        }
+        .polaroid-caption h3 {
+            font-family: 'Caveat', cursive;
+            font-size: 1.05em;
+            font-weight: 700;
+            color: #2a1a1a;
+            margin-bottom: 2px;
+            line-height: 1.2;
+        }
+        .polaroid-caption p {
+            font-family: 'Caveat', cursive;
+            font-size: 0.82em;
+            color: #5a3a3a;
+            line-height: 1.3;
+        }
+
+        /* Tape strip decoration on top of each polaroid */
+        .polaroid::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-1deg);
+            width: 50px;
+            height: 20px;
+            background: rgba(255, 240, 150, 0.7);
+            border-radius: 2px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            backdrop-filter: blur(1px);
+            z-index: 1;
+        }
+        .polaroid:nth-child(even)::before {
+            transform: translateX(-50%) rotate(2deg);
+            left: 35%;
+        }
+
+        /* ── LIGHTBOX ── */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.88);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+            animation: lbFadeIn 0.2s ease forwards;
+        }
+        .lightbox-overlay.open { display: flex; }
+
+        @keyframes lbFadeIn {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+
+        .lightbox-inner {
+            background: #f5f0e8;
+            padding: 14px 14px 60px;
+            max-width: 90vw;
+            max-height: 90vh;
+            position: relative;
+            box-shadow: 0 24px 80px rgba(0,0,0,0.8), 0 0 0 3px var(--clr-accent);
+            animation: lbPop 0.3s cubic-bezier(.175,.885,.32,1.275) forwards;
+        }
+        @keyframes lbPop {
+            from { transform: scale(0.85) rotate(-3deg); opacity: 0; }
+            to   { transform: scale(1) rotate(0deg);   opacity: 1; }
+        }
+
+        .lightbox-inner img {
+            display: block;
+            max-width: 70vw;
+            max-height: 65vh;
+            object-fit: contain;
+        }
+        .lightbox-caption {
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 100%;
+            padding: 10px 14px 12px;
+            text-align: center;
+        }
+        .lightbox-caption h3 {
+            font-family: 'Caveat', cursive;
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #2a1a1a;
+        }
+        .lightbox-caption p {
+            font-family: 'Caveat', cursive;
+            font-size: 1em;
+            color: #5a3a3a;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: -16px;
+            right: -16px;
+            width: 36px;
+            height: 36px;
+            background: var(--clr-accent);
+            color: var(--clr-dark);
+            border: none;
+            border-radius: 50%;
+            font-size: 1.2em;
+            font-weight: 900;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            transition: transform 0.2s;
+        }
+        .lightbox-close:hover { transform: scale(1.15) rotate(90deg); }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 600px) {
+            .polaroid { width: 160px; padding: 8px 8px 40px; }
+            .polaroid-caption h3 { font-size: 0.9em; }
+            .album-title { font-size: 2.5em; }
+        }
+    </style>
+</head>
+<body>
+
+    <main id="pageContainer">
+        <section class="secondSection" id="favorites-container">
+            <div class="album-page" id="favorite">
+
+                <h2 class="album-title">📸 My Album</h2>
+                <div class="album-title-line"></div>
+
+                <!-- ── FAMILY ── -->
+                <div class="album-chapter">
+                    <div class="album-chapter-label">
+                        <i class='bx bx-heart'></i> Family
+                    </div>
+                    <div class="polaroid-grid" id="family-grid">
+
+                        <div class="polaroid" data-title="Picture with Father" data-desc="Our last picture before he went back abroad." data-src="img/picpapa.jpg">
+                            <img class="polaroid-img" src="img/picpapa.jpg" alt="Picture with father"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/350x350/00ffff/252525?text=Papa'">
+                            <div class="polaroid-caption">
+                                <h3>With Father</h3>
+                                <p>Before he went abroad</p>
+                            </div>
+                        </div>
+
+                        <div class="polaroid" data-title="Picture with Mother" data-desc="One of my favorite photos with Mama and Francess." data-src="img/favpicwithmama.jpg">
+                            <img class="polaroid-img" src="img/favpicwithmama.jpg" alt="With mother"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/350x350/ffff00/252525?text=Mama'">
+                            <div class="polaroid-caption">
+                                <h3>With Mama</h3>
+                                <p>Favorite photo with Mama & Francess</p>
+                            </div>
+                        </div>
+
+                        <div class="polaroid" data-title="Francess Blooper" data-desc="I took a picture of my sister while she was playing with her tablet." data-src="img/francess.jpg">
+                            <img class="polaroid-img" src="img/francess.jpg" alt="Francess blooper"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/350x350/ff00ff/252525?text=Francess'">
+                            <div class="polaroid-caption">
+                                <h3>Francess 😄</h3>
+                                <p>Caught playing her tablet</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- ── FRIENDS ── -->
+                <div class="album-chapter">
+                    <div class="album-chapter-label">
+                        <i class='bx bx-group'></i> Friends
+                    </div>
+                    <div class="polaroid-grid" id="friends-grid">
+
+                        <div class="polaroid" data-title="Childhood Friend" data-desc="We always meet up once a year — always during Christmas season." data-src="img/childhood.jpg">
+                            <img class="polaroid-img" src="img/childhood.jpg" alt="Childhood friend"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/350x350/ffff00/252525?text=Childhood'">
+                            <div class="polaroid-caption">
+                                <h3>Childhood BFF</h3>
+                                <p>Every Christmas 🎄</p>
+                            </div>
+                        </div>
+
+                        <div class="polaroid" data-title="Grand Ball with COF" data-desc="A picture with my COF at the Grand Ball." data-src="img/grandball.jpeg">
+                            <img class="polaroid-img" src="img/grandball.jpeg" alt="Grand ball"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/350x350/ffff00/252525?text=Grand+Ball'">
+                            <div class="polaroid-caption">
+                                <h3>Grand Ball</h3>
+                                <p>Best moment with COF ✨</p>
+                            </div>
+                        </div>
+
+                        <div class="polaroid" data-title="Win and Wil — Dance Contest" data-desc="COF supporting us at the dance event — we won 3rd place!" data-src="img/contest.jpeg">
+                            <img class="polaroid-img" src="img/contest.jpeg" alt="Dance contest"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/350x350/ffff00/252525?text=Contest'">
+                            <div class="polaroid-caption">
+                                <h3>Win & Wil 🕺</h3>
+                                <p>3rd place dance contest!</p>
+                            </div>
+                        </div>
+
+                        <div class="polaroid" data-title="Brothers" data-desc="A picture with my brothers." data-src="img/brothers.jpg">
+                            <img class="polaroid-img" src="img/brothers.jpg" alt="Brothers"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/350x350/ffff00/252525?text=Brothers'">
+                            <div class="polaroid-caption">
+                                <h3>Brothers 👊</h3>
+                                <p>Always got my back</p>
+                            </div>
+                        </div>
+
+                        <div class="polaroid" data-title="Christmas with COF" data-desc="A picture with my COF — incomplete." data-src="img/chirstmas.jpeg">
+                            <img class="polaroid-img" src="img/chirstmas.jpeg" alt="Christmas bonding"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/350x350/ffff00/252525?text=Christmas'">
+                            <div class="polaroid-caption">
+                                <h3>Bonding 🎅</h3>
+                                <p>COF Christmas (incomplete)</p>
+                            </div>
+                        </div>
+
+                        <div class="polaroid" data-title="College COF" data-desc="My College COF — and it will always be my COF." data-src="img/collegecof.jpg">
+                            <img class="polaroid-img" src="img/collegecof.jpg" alt="College COF"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/350x350/ffff00/252525?text=College+COF'">
+                            <div class="polaroid-caption">
+                                <h3>College COF 🎓</h3>
+                                <p>Always will be my COF</p>
+                            </div>
+                        </div>
+
+                        <div class="polaroid" data-title="ROTC Family" data-desc="My ROTC graduation picture." data-src="img/rotcfam.jpeg">
+                            <img class="polaroid-img" src="img/rotcfam.jpeg" alt="ROTC family"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/350x350/ffff00/252525?text=ROTC+Fam'">
+                            <div class="polaroid-caption">
+                                <h3>ROTC Family 🎖️</h3>
+                                <p>Graduation day</p>
+                            </div>
+                        </div>
+
+                        <div class="polaroid" data-title="ROTC Graduation" data-desc="My ROTC graduation picture." data-src="img/rotcgrad.jpg">
+                            <img class="polaroid-img" src="img/rotcgrad.jpg" alt="ROTC graduation"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/350x350/ffff00/252525?text=ROTC+Grad'">
+                            <div class="polaroid-caption">
+                                <h3>ROTC Grad 🫡</h3>
+                                <p>Proud moment</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox-overlay" id="lightbox">
+        <div class="lightbox-inner">
+            <button class="lightbox-close" id="lbClose">✕</button>
+            <img id="lbImg" src="" alt="">
+            <div class="lightbox-caption">
+                <h3 id="lbTitle"></h3>
+                <p id="lbDesc"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="shared.js"></script>
+    <script src="protect.js"></script>
+    <script src="wei.js"></script>
+    <script>
+        // Lightbox logic
+        const lb = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lbImg');
+        const lbTitle = document.getElementById('lbTitle');
+        const lbDesc = document.getElementById('lbDesc');
+        const lbClose = document.getElementById('lbClose');
+
+        document.querySelectorAll('.polaroid').forEach(card => {
+            card.addEventListener('click', () => {
+                lbImg.src = card.dataset.src;
+                lbImg.onerror = () => { lbImg.src = card.querySelector('img').src; };
+                lbTitle.textContent = card.dataset.title;
+                lbDesc.textContent = card.dataset.desc;
+                lb.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        function closeLb() {
+            lb.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        lbClose.addEventListener('click', closeLb);
+        lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
+    </script>
+</body>
+</html>

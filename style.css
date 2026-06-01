@@ -1,0 +1,1091 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&display=swap");
+
+/* GLOBAL CSS VARIABLES */
+:root {
+    --clr-dark: #252525;
+    --clr-light: #f3f3f3;
+    --clr-accent: #ff00ff;
+    --clr-medium-light: #aaa;
+    --font-primary: 'Poppins', sans-serif;
+}
+
+/* BASE STYLES & RESET */
+* {
+    border: none;
+    outline: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--clr-dark) url('img/tech.gif') center center no-repeat fixed;
+    background-size: cover;
+    font-family: var(--font-primary);
+    color: var(--clr-light);
+    min-height: 100vh;
+}
+
+.sectionTitle {
+    font-size: 2.5em;
+    color: var(--clr-accent);
+    margin-bottom: 5px;
+    text-align: center;
+    width: 100%;
+    /* Add animation for section titles */
+    opacity: 0;
+    animation: fadeInTop 0.8s ease forwards;
+}
+
+.sectionTitle::after {
+    content: '';
+    display: block;
+    width: 50%;
+    height: 3px;
+    background: var(--clr-accent);
+    margin: 5px auto 0;
+}
+
+/* ------------------------------------------------------------- */
+/* 1A. ALBUM / CHAPTER STYLES (from favorite.html)               */
+/* ------------------------------------------------------------- */
+
+.album-page {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 20px 60px;
+}
+
+.album-title {
+    font-family: 'Caveat', cursive;
+    font-size: 3.5em;
+    color: var(--clr-accent);
+    text-align: center;
+    margin-bottom: 8px;
+    text-shadow: 0 0 20px rgba(255,0,255,0.4);
+}
+.album-title-line {
+    width: 60%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--clr-accent), transparent);
+    margin: 0 auto 50px;
+}
+
+.album-chapter {
+    margin-bottom: 70px;
+    position: relative;
+}
+
+.album-chapter-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Caveat', cursive;
+    font-size: 2em;
+    font-weight: 700;
+    color: var(--clr-dark);
+    background: var(--clr-accent);
+    padding: 6px 24px 6px 16px;
+    margin-bottom: 30px;
+    clip-path: polygon(0 0, 100% 0, 94% 100%, 0 100%);
+    box-shadow: 4px 4px 12px rgba(0,0,0,0.5);
+}
+.album-chapter-label i { font-size: 0.9em; }
+
+@media (max-width: 600px) {
+    .album-title { font-size: 2.5em; }
+}
+
+/* ------------------------------------------------------------- */
+/* 1B. POLAROID CARD STYLES                                      */
+/* ------------------------------------------------------------- */
+
+.polaroid-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+.polaroid {
+    background: #f5f0e8;
+    padding: 12px 12px 50px;
+    width: 220px;
+    box-shadow:
+        0 4px 6px rgba(0,0,0,0.4),
+        0 8px 24px rgba(0,0,0,0.3),
+        inset 0 0 0 1px rgba(0,0,0,0.08);
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.35s cubic-bezier(.175,.885,.32,1.275),
+                box-shadow 0.35s ease,
+                z-index 0s;
+    flex-shrink: 0;
+}
+
+.polaroid:nth-child(3n+1) { transform: rotate(-2.5deg); }
+.polaroid:nth-child(3n+2) { transform: rotate(1.8deg); }
+.polaroid:nth-child(3n)   { transform: rotate(-0.8deg); }
+.polaroid:nth-child(5n+1) { transform: rotate(3deg); }
+.polaroid:nth-child(5n+3) { transform: rotate(-1.5deg); }
+
+.polaroid:hover {
+    transform: rotate(0deg) scale(1.08) translateY(-8px) !important;
+    box-shadow:
+        0 16px 40px rgba(0,0,0,0.6),
+        0 0 0 2px var(--clr-accent),
+        0 0 30px rgba(255,0,255,0.25);
+    z-index: 100;
+}
+
+.polaroid-img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    display: block;
+    background: #ccc;
+}
+
+.polaroid-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 8px 12px 10px;
+    text-align: center;
+}
+.polaroid-caption h3 {
+    font-family: 'Caveat', cursive;
+    font-size: 1.05em;
+    font-weight: 700;
+    color: #2a1a1a;
+    margin-bottom: 2px;
+    line-height: 1.2;
+}
+.polaroid-caption p {
+    font-family: 'Caveat', cursive;
+    font-size: 0.82em;
+    color: #5a3a3a;
+    line-height: 1.3;
+}
+
+.polaroid::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-1deg);
+    width: 50px;
+    height: 20px;
+    background: rgba(255, 240, 150, 0.7);
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    backdrop-filter: blur(1px);
+    z-index: 1;
+}
+.polaroid:nth-child(even)::before {
+    transform: translateX(-50%) rotate(2deg);
+    left: 35%;
+}
+
+@media (max-width: 600px) {
+    .polaroid { width: 160px; padding: 8px 8px 40px; }
+    .polaroid-caption h3 { font-size: 0.9em; }
+}
+
+/* --- KEYFRAMES FOR ENTRANCE EFFECTS (Wavy Transition) --- */
+
+/* Keyframe for elements sliding in from the left and fading in */
+@keyframes fadeInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Keyframe for elements sliding in from the right and fading in */
+@keyframes fadeInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Keyframe for elements sliding in from the top and fading in */
+@keyframes fadeInTop {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Keyframe for simple fade in */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* ------------------------------------------------------------- */
+/* 1. WELCOME SCREEN STYLES */
+/* ------------------------------------------------------------- */
+
+#welcomeScreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.75);
+    font-family: var(--font-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    text-align: center;
+}
+
+
+.welcome-icons {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    /* Apply animation with delay */
+    opacity: 0;
+    animation: fadeIn 0.5s ease 3.5s forwards;
+}
+
+.welcome-icons i {
+    font-size: 3em;
+    color: var(--clr-accent);
+    transition: transform 0.3s ease-in-out;
+}
+
+.welcome-icons i:hover {
+    transform: translateY(-5px);
+}
+
+/* Typing Effect Title */
+.welcome-content h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: var(--clr-light);
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 0.15em solid var(--clr-accent);
+    animation:
+        typing 3s steps(25, end) forwards,
+        blink-caret 0.75s step-end infinite;
+    width: 0;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--clr-accent); }
+}
+
+#continueLink {
+    display: inline-block;
+    /* Apply animation with delay */
+    opacity: 0;
+    animation: fadeInTop 0.5s ease 4s forwards;
+}
+
+#continueLabel, .continue-button {
+    display: inline-block;
+    padding: 10px 30px;
+    font-size: 1.2em;
+    border: 2px solid var(--clr-accent);
+    color: var(--clr-light);
+    background-color: var(--clr-dark);
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: 0.3s ease-in-out;
+}
+
+#continueLabel:hover, .continue-button:hover {
+    box-shadow: 4px 4px 4px var(--clr-accent);
+    transform: translate(-2px, -2px);
+}
+
+/* ------------------------------------------------------------- */
+/* 2. NAVIGATION HEADER (Only used in base.html) */
+/* ------------------------------------------------------------- */
+
+.header_navbar {
+    width: 100%;
+    padding: 0 clamp(10px, 5vw, 50px); 
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background-color: rgba(37, 37, 37, 0.95);
+    border-bottom: 2px solid var(--clr-accent);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    /* Add a slight fade-in on load */
+    opacity: 0;
+    animation: fadeIn 0.5s ease 0.1s forwards;
+}
+
+.hn_wrap {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hn_logo {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    color: var(--clr-light);
+}
+
+.hn_logo > h1 {
+    font-weight: 700;
+}
+
+.nav_menu > ul {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav_menu > ul > li {
+    border-left: 1px solid var(--clr-accent);
+    border-right: 1px solid var(--clr-accent);
+    padding: 0 8px;
+}
+
+.nav_menu a {
+    font-size: 14px;
+    color: var(--clr-light);
+    transition: 0.3s linear;
+}
+
+.hnLink {
+    padding: 3px 0;
+    transition: color 0.3s, background-color 0.3s, padding 0.3s;
+}
+
+/* Navigation Link Active State (Using :focus for temporary highlight) */
+.nav_menu a:focus,
+.nav_menu a:active {
+    background-color: var(--clr-accent);
+    color: var(--clr-dark);
+    padding: 3px 10px;
+    font-weight: 600;
+}
+
+/* Link Hover State */
+.nav_menu a:hover {
+    border-bottom: 1px solid var(--clr-accent);
+    padding: 3px 10px;
+}
+
+
+/* ------------------------------------------------------------- */
+/* 3. MAIN CONTENT WRAPPERS */
+/* ------------------------------------------------------------- */
+
+#pageContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 80px);
+    position: relative;
+    padding-bottom: 50px;
+}
+
+.page-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    min-height: calc(100vh - 80px);
+    position: relative;
+}
+
+.firstSection {
+     min-height: 100vh;
+     display: flex;
+     justify-content: center; 
+}
+
+/* ------------------------------------------------------------- */
+/* 4. HOME SECTION (On main.html) */
+/* ------------------------------------------------------------- */
+
+.homeWrap {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto; 
+    display: flex;
+    align-items: center;
+    padding: 0;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.homeText {
+    flex: 2;
+    min-width: 300px;
+    max-width: 650px;
+    /* Apply slide-in from left animation */
+    opacity: 0;
+    animation: fadeInLeft 0.8s ease 0.3s forwards;
+}
+
+.homeIMGCon {
+    flex-basis: 350px;
+    flex-grow: 1;
+    flex-shrink: 0;
+    text-align: center;
+    /* Apply slide-in from right animation */
+    opacity: 0;
+    animation: fadeInRight 0.8s ease 0.3s forwards;
+}
+.homeIMGCon img {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 25px var(--clr-accent);
+}
+
+.homeText h1 {
+    font-size: 3.5em;
+    color: var(--clr-accent);
+}
+
+.homeText .hometext {
+    font-size: 1.8em;
+    font-weight: 600;
+    color: var(--clr-light);
+    display: block;
+    margin-bottom: 15px;
+}
+.homeText p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+/* Apply animation to the 'Learn more' button */
+.continue-button {
+    opacity: 0;
+    animation: fadeInTop 0.5s ease 1s forwards;
+}
+
+
+/* ------------------------------------------------------------- */
+/* 5. ABOUT SECTION (Updated for integrated content) */
+/* ------------------------------------------------------------- */
+
+.secondSection{
+    position: relative;
+    overflow: hidden; 
+    padding-top: 60px;   /* prevents content hiding under sticky navbar */
+    padding-bottom: 80px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.aboutWrap {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    gap: 40px; 
+    padding: 40px 0;
+    /* Apply animation to the main about wrapper */
+    opacity: 0;
+    animation: fadeIn 1s ease 0.5s forwards;
+}
+
+/* Bio Stats Section */
+.about-bio-stats {
+    width: 100%;
+    max-width: 700px; 
+    padding: 20px;
+    background-color: rgba(37, 37, 37, 0.7); 
+    border: 1px solid var(--clr-accent);
+    border-radius: 8px;
+    text-align: center;
+    opacity: 0;
+    /* Staggered entrance after image */
+    animation: fadeInTop 0.8s ease 1.5s forwards; 
+}
+.about-bio-stats ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-around; /* Spread the stats out */
+    flex-wrap: wrap;
+    gap: 10px 20px;
+}
+.about-bio-stats li {
+    font-size: 1.1em;
+    font-weight: 500;
+}
+.about-bio-stats strong {
+    color: var(--clr-accent);
+    font-weight: 700;
+}
+
+
+.about-info-con {
+    flex: none;
+    width: 90%;
+    max-width: 800px; 
+    min-width: 300px;
+    text-align: center;
+    /* Add animation for the text/skills block */
+    opacity: 0;
+    animation: fadeIn 1s ease 2.2s forwards;
+}
+.aboutText p {
+    margin-bottom: 15px;
+    text-align: justify; /* Keep text justified for better readability */
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Image container changes for vertical stack (Photo, then Motto above it) */
+.aboutImageCon {
+    width: 300px;
+    height: auto;
+    display: flex;
+    flex-direction: column; /* Stack motto and image vertically */
+    align-items: center;
+    text-align: center;
+    flex-shrink: 0;
+    opacity: 0;
+    /* Earlier animation for top element */
+    animation: fadeInTop 0.8s ease 0.8s forwards; 
+}
+
+/* Motto is now inside aboutImageCon, above the image */
+.aboutMotto {
+    order: 1; /* Place the motto before the image (top of its container) */
+    margin-bottom: 15px;
+    font-size: 1.2em;
+    font-style: italic;
+    color: var(--clr-accent);
+    font-weight: 600;
+    opacity: 1; 
+    animation: none;
+}
+
+/* Image specific styles */
+.aboutImageCon img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 10px;
+    border: 2px solid var(--clr-accent);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s;
+    opacity: 1;
+    animation: none;
+}
+
+.mySkills {
+    margin-top: 20px;
+}
+
+.mySkills h2::after {
+    margin: 5px 0 0 0;
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.skillsIconCon {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 15px;
+}
+/* Animate skills icons with a slight delay (Wavy effect) */
+.skillsIconCon i {
+    font-size: 2.5em;
+    color: var(--clr-accent);
+    transition: transform 0.3s;
+    opacity: 0;
+    animation: fadeInTop 0.5s ease forwards;
+}
+/* Apply individual delays to icons for a staggered 'wavy' effect */
+.skillsIconCon i:nth-child(1) { animation-delay: 2.4s; } 
+.skillsIconCon i:nth-child(2) { animation-delay: 2.6s; }
+.skillsIconCon i:nth-child(3) { animation-delay: 2.8s; }
+.skillsIconCon i:nth-child(4) { animation-delay: 3.0s; }
+
+.skillsIconCon i:hover {
+    transform: scale(1.1);
+}
+
+.myCertificate{
+    margin-top: 30px;
+}
+
+.myCertificate h2::after {
+    margin: 5px 0 0 0;
+    width: 30%;
+}
+
+/*Certificates section*/
+.certificateCon{
+    width: 100%;
+    max-width: 800px; 
+    padding: 20px;
+    background-color: rgba(37, 37, 37, 0.7); 
+    border: 1px solid var(--clr-accent);
+    border-radius: 8px;
+    justify-content: center;
+    text-align: center;
+    opacity: 0;
+    /* Staggered entrance after skills */
+    animation: fadeInTop 0.8s ease 3.5s forwards;
+}
+.certificateCon ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-around; 
+    flex-wrap: wrap;
+    gap: 10px 20px;
+}
+.certificateCon li {
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+
+
+/* ------------------------------------------------------------- */
+/* 7. PROJECTS SECTION */
+/* ------------------------------------------------------------- */
+
+.thirdSection { 
+    padding-top: 80px; 
+    min-height: auto; 
+    width: 100%; 
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+.thirdSection p { 
+    margin: 20px auto 40px auto; 
+    text-align: center; 
+    width: 80%; 
+    max-width: 800px; 
+}
+.project-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 30px; 
+    width: 90%; 
+    max-width: 1100px; 
+    margin: 0 auto; 
+    padding: 0 10px; 
+}
+.project-item { 
+    background-color: rgba(37, 37, 37, 0.85); 
+    padding: 30px; 
+    border-radius: 10px; 
+    border: 2px solid var(--clr-accent); 
+    text-align: center; 
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); 
+    transition: transform 0.3s ease; 
+    /* Apply staggered slide-up animation */
+    opacity: 0;
+    animation: fadeInTop 0.6s ease forwards;
+}
+/* Individual delays for a staggered 'wavy' entrance */
+.project-grid .project-item:nth-child(1) { animation-delay: 0.8s; }
+.project-grid .project-item:nth-child(2) { animation-delay: 1.1s; }
+
+.project-item:hover { 
+    transform: translateY(-5px); 
+    box-shadow: 0 10px 20px rgba(255, 0, 255, 0.3); 
+}
+.project-item i { 
+    font-size: 3em; 
+    color: var(--clr-accent); 
+    margin-bottom: 15px; 
+}
+.project-item h3 { 
+    font-size: 1.5em; 
+    margin-bottom: 10px; 
+    color: var(--clr-light); 
+}
+
+/* ------------------------------------------------------------- */
+/* 8. CONTACT ME (PERSISTENT FOOTER) */
+/* ------------------------------------------------------------- */
+
+#contact-footer { 
+    width: 100%; 
+    background-color: rgba(37, 37, 37, 0.95); 
+    padding: 40px 20px; 
+    text-align: center; 
+    border-top: 5px solid var(--clr-accent); 
+    color: var(--clr-light); 
+    /* Add a slight fade-in on load */
+    opacity: 0;
+    animation: fadeIn 0.5s ease 0.2s forwards;
+}
+.contact-content { 
+    max-width: 900px; 
+    margin: 0 auto; 
+}
+#contact-footer .sectionTitle { 
+    color: var(--clr-accent); 
+    margin-bottom: 20px; 
+    font-size: 2em; 
+}
+.contact-links { 
+    display: flex; 
+    justify-content: center; 
+    flex-wrap: wrap; 
+    gap: 20px 40px; 
+    margin: 30px 0; 
+}
+.contact-links a { 
+    color: var(--clr-light); 
+    display: flex; 
+    align-items: center; 
+    gap: 8px; 
+    font-size: 1.1em; 
+    transition: color 0.3s, transform 0.3s; 
+}
+.contact-links a:hover { 
+    color: var(--clr-accent); 
+    transform: translateY(-2px); 
+}
+.contact-links i { 
+    font-size: 1.5em; 
+}
+.copyright { 
+    margin-top: 20px; 
+    font-size: 0.9em; 
+    color: var(--clr-medium-light); 
+}
+/* ============================================================== */
+/* 9. COPY PROTECTION + WATERMARK                                  */
+/* ============================================================== */
+* { -webkit-user-select:none; -moz-user-select:none; user-select:none; }
+img, video { -webkit-user-drag:none; user-drag:none; pointer-events:none; }
+video { pointer-events:auto; }
+
+#wm-overlay {
+    position:fixed; top:0; left:0; width:100vw; height:100vh;
+    pointer-events:none; z-index:99999; overflow:hidden;
+    display:flex; flex-wrap:wrap; align-content:flex-start;
+    gap:60px 30px; padding:40px;
+    transform:rotate(-30deg) scale(1.8);
+    opacity:0.045; font-family:var(--font-primary);
+    font-size:0.85em; font-weight:700; color:var(--clr-accent);
+    letter-spacing:0.05em; white-space:nowrap;
+}
+
+/* ============================================================== */
+/* 10. HAMBURGER MENU                                             */
+/* ============================================================== */
+.hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:6px; background:none; border:none; }
+.hamburger span { display:block; width:24px; height:2px; background:var(--clr-light); transition:0.3s; }
+.hamburger.open span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
+.hamburger.open span:nth-child(2) { opacity:0; }
+.hamburger.open span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
+
+
+
+/* ============================================================== */
+/* 11. WEI CHAT WIDGET                                            */
+/* ============================================================== */
+
+/* Floating chat button */
+#wei-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--clr-accent);
+    color: var(--clr-dark);
+    border: none;
+    cursor: pointer;
+    font-size: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(255,0,255,0.4);
+    z-index: 9998;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+#wei-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 30px rgba(255,0,255,0.6);
+}
+
+/* Chat popup container */
+#wei-popup {
+    position: fixed;
+    bottom: 90px;
+    right: 24px;
+    width: 360px;
+    max-width: calc(100vw - 48px);
+    height: 520px;
+    max-height: calc(100vh - 140px);
+    background: rgba(30,30,30,0.97);
+    border: 2px solid var(--clr-accent);
+    border-radius: 16px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.6), 0 0 30px rgba(255,0,255,0.15);
+    z-index: 9997;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    animation: weiSlideUp 0.3s ease;
+}
+#wei-popup.open { display: flex; }
+
+@keyframes weiSlideUp {
+    from { opacity: 0; transform: translateY(20px) scale(0.95); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Chat header */
+#wei-header {
+    background: var(--clr-accent);
+    color: var(--clr-dark);
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Caveat', cursive;
+    font-size: 1.5em;
+    font-weight: 700;
+}
+#wei-header span { display: flex; align-items: center; gap: 8px; }
+#wei-close {
+    background: none;
+    border: none;
+    color: var(--clr-dark);
+    font-size: 1.2em;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+#wei-close:hover { background: rgba(0,0,0,0.15); }
+
+/* Message area */
+#wei-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    scroll-behavior: smooth;
+}
+
+/* Message bubbles */
+.wei-msg {
+    max-width: 85%;
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-size: 0.9em;
+    line-height: 1.5;
+    animation: weiMsgIn 0.25s ease;
+}
+@keyframes weiMsgIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.wei-msg.bot {
+    align-self: flex-start;
+    background: rgba(255,255,255,0.08);
+    color: var(--clr-light);
+    border-bottom-left-radius: 4px;
+}
+.wei-msg.user {
+    align-self: flex-end;
+    background: var(--clr-accent);
+    color: var(--clr-dark);
+    font-weight: 500;
+    border-bottom-right-radius: 4px;
+}
+
+/* Quick reply chips */
+#wei-suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0 16px 12px;
+}
+.wei-chip {
+    background: rgba(255,0,255,0.15);
+    color: var(--clr-accent);
+    border: 1px solid rgba(255,0,255,0.3);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 0.78em;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    font-family: 'Poppins', sans-serif;
+}
+.wei-chip:hover {
+    background: rgba(255,0,255,0.25);
+    transform: scale(1.03);
+}
+
+/* Input area */
+#wei-input-area {
+    display: flex;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding: 10px 12px;
+    gap: 8px;
+    align-items: center;
+}
+#wei-input {
+    flex: 1;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 24px;
+    padding: 10px 16px;
+    color: var(--clr-light);
+    font-size: 0.88em;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+    transition: border-color 0.2s;
+}
+#wei-input:focus { border-color: var(--clr-accent); }
+#wei-input::placeholder { color: rgba(255,255,255,0.35); }
+
+#wei-send {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--clr-accent);
+    color: var(--clr-dark);
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+    flex-shrink: 0;
+}
+#wei-send:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 16px rgba(255,0,255,0.4);
+}
+
+/* Typing indicator */
+.wei-typing {
+    align-self: flex-start;
+    background: rgba(255,255,255,0.08);
+    padding: 12px 18px;
+    border-radius: 12px;
+    border-bottom-left-radius: 4px;
+    display: flex;
+    gap: 5px;
+}
+.wei-typing span {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--clr-accent);
+    animation: weiBounce 1.2s infinite;
+}
+.wei-typing span:nth-child(2) { animation-delay: 0.2s; }
+.wei-typing span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes weiBounce {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.3; }
+    30% { transform: translateY(-6px); opacity: 1; }
+}
+
+/* Scrollbar styling */
+#wei-messages::-webkit-scrollbar { width: 5px; }
+#wei-messages::-webkit-scrollbar-track { background: transparent; }
+#wei-messages::-webkit-scrollbar-thumb { background: var(--clr-accent); border-radius: 10px; }
+
+/* Responsive for mobile */
+@media (max-width: 480px) {
+    #wei-popup {
+        bottom: 80px;
+        right: 12px;
+        width: calc(100vw - 24px);
+        height: calc(100vh - 140px);
+    }
+    #wei-btn {
+        bottom: 16px;
+        right: 16px;
+        width: 50px;
+        height: 50px;
+        font-size: 22px;
+    }
+}
+
+/* ============================================================== */
+/* 12. RESPONSIVE                                                  */
+/* ============================================================== */
+@media (max-width:768px) {
+    .hamburger { display:flex; }
+    .nav_menu { display:none; position:absolute; top:80px; left:0; width:100%;
+        background-color:rgba(37,37,37,0.98); border-bottom:2px solid var(--clr-accent); padding:10px 0; }
+    .nav_menu.open { display:block; }
+    .nav_menu > ul { flex-direction:column; align-items:center; gap:0; }
+    .nav_menu > ul > li { width:100%; text-align:center; border:none; border-bottom:1px solid rgba(255,0,255,0.2); padding:12px 0; }
+    .homeText h1 { font-size:2.5em; }
+    .homeText .hometext { font-size:1.4em; }
+    .sectionTitle { font-size:1.8em; }
+    .aboutWrap { gap:20px; }
+    .project-grid { grid-template-columns:1fr; }
+}
+@media (max-width:480px) {
+    .homeText h1 { font-size:2em; }
+    .sectionTitle { font-size:1.5em; }
+    .hn_logo h1 { font-size:1.2em; }
+}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Win's Home Page</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="asset/L0.png" type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css" />
+</head>
+<body>
+
+    <header class="header_navbar">
+        <nav id="navbar" class="hn_wrap">
+            <a href="main.html" class="hn_logo"><h1>&lt;WinPage&gt;</h1></a>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="nav_menu" id="navMenu">
+                <ul>
+                    <li><a href="main.html"              class="hnLink nav-active">HOME</a></li>
+                    <li><a href="base.html#about"         class="hnLink">ABOUT</a></li>
+                    <li><a href="interest.html#interests" class="hnLink">INTERESTS</a></li>
+                    <li><a href="favorite.html#favorite"  class="hnLink">FAVORITE</a></li>
+                    <li><a href="projects.html#projects"  class="hnLink">PROJECTS</a></li>
+                    <li><a href="#contact-footer"         class="hnLink">CONTACT</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main id="pageContainer">
+        <section class="firstSection" id="homeSection">
+            <div class="album-page">
+                <h1 class="album-title" style="font-size:4.5em;">I'm Win</h1>
+                <div class="album-title-line" style="margin-bottom:40px;"></div>
+                <div class="homeWrap" style="padding-top:0;">
+                    <div class="homeText">
+                        <div class="hometext">
+                            <span class="homeTextType">A Passionate Web Developer</span>
+                        </div>
+                        <p>Take a journey through my webpage and discover the intersection of creativity and craftsmanship.</p>
+                        <a href="base.html#about" class="continue-button">Learn more about me</a>
+                    </div>
+                    <div class="homeIMGCon">
+                        <img src="img/compu.gif" alt="Win"
+                             onerror="this.onerror=null;this.src='https://placehold.co/350x350/ff00ff/252525?text=Dev+Portrait'" />
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="shared.js"></script>
+    <script src="protect.js"></script>
+    <script src="wei.js"></script>
+    <script>
+        /* Hamburger for main.html's static nav */
+        (function(){
+            var btn = document.getElementById('hamburger');
+            var menu = document.getElementById('navMenu');
+            if(btn && menu){
+                btn.addEventListener('click', function(){
+                    btn.classList.toggle('open');
+                    menu.classList.toggle('open');
+                });
+            }
+            /* nav-active style */
+            var s = document.createElement('style');
+            s.textContent = '.nav-active{border-bottom:2px solid var(--clr-accent);color:var(--clr-accent)!important;font-weight:700;}';
+            document.head.appendChild(s);
+        })();
+    </script>
+</body>
+</html>
