@@ -3,32 +3,643 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Welcome to WinPage</title>
+    <title>WinPage — Herwin D. Datinguinoo</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="shortcut icon" href="asset/L0.png" type="image/x-icon" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&display=swap" />
+    <script>
+        var st = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', st);
+    </script>
 </head>
-<body class="welcome-only-body">
+<body>
 
-    <div id="welcomeScreen" class="is-active">
-        <div class="welcome-content">
-            <div class="welcome-icons">
-                <i class="bx bx-user"></i>
-                <i class="bx bx-code-alt"></i>
-                <i class="bx bxl-github"></i>
+    <!-- ═══ HEADER / NAVBAR ═══ -->
+    <header class="header_navbar">
+        <nav class="hn_wrap">
+            <a href="#hero" class="hn_logo"><h1>&lt;WinPage&gt;</h1></a>
+            <div class="hn_right-group">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <i class="bx bx-moon"></i>
+                </button>
+                <!-- Desktop nav -->
+                <div class="nav_menu">
+                    <ul>
+                        <li><a href="#hero"     class="hnLink">HOME</a></li>
+                        <li><a href="#services"  class="hnLink">SERVICES</a></li>
+                        <li><a href="#about"     class="hnLink">ABOUT</a></li>
+                        <li><a href="#projects"  class="hnLink">PROJECTS</a></li>
+                        <li><a href="#interests" class="hnLink">INTERESTS</a></li>
+                        <li><a href="#album"     class="hnLink">ALBUM</a></li>
+                        <li><a href="#contact"   class="hnLink">CONTACT</a></li>
+                    </ul>
+                </div>
+                <!-- Hamburger (mobile) -->
+                <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
             </div>
-            <h1 style="font-family:'Caveat',cursive;">WELCOME TO MY WEBPAGE</h1>
-            <a href="main.html" id="continueLink">
-                <label id="continueLabel">Continue</label>
-            </a>
-        </div>
+        </nav>
+    </header>
+
+    <!-- Full-screen mobile overlay (Ahmed Ragab inspired) -->
+    <div class="nav-overlay" id="navOverlay">
+        <ul>
+            <li><a href="#hero"     class="nav-overlay-link">HOME</a></li>
+            <li><a href="#services"  class="nav-overlay-link">SERVICES</a></li>
+            <li><a href="#about"     class="nav-overlay-link">ABOUT</a></li>
+            <li><a href="#projects"  class="nav-overlay-link">PROJECTS</a></li>
+            <li><a href="#interests" class="nav-overlay-link">INTERESTS</a></li>
+            <li><a href="#album"     class="nav-overlay-link">ALBUM</a></li>
+            <li><a href="#contact"   class="nav-overlay-link">CONTACT</a></li>
+        </ul>
     </div>
 
+    <main id="pageContainer">
+
+        <!-- ═══ HERO (Ahmed Ragab inspired layout) ═══ -->
+        <section class="firstSection" id="hero">
+            <div class="album-page" style="padding-top:120px;">
+                <div class="homeWrap" style="padding-top:0;min-height:70vh;">
+                    <div class="homeText scroll-hidden" style="animation:none;flex:1;">
+                        <h1 style="font-size:clamp(3em,10vw,5em);color:var(--clr-accent);line-height:1.1;margin-bottom:10px;">
+                            Hi, I'm <span style="color:var(--clr-light);">Win</span>
+                        </h1>
+                        <div class="hometext" style="font-size:clamp(1.1em,3vw,1.6em);">
+                            <span class="homeTextType">A Passionate Web Developer</span>
+                        </div>
+                        <p style="font-size:1.05em;max-width:500px;margin:15px 0 25px;color:var(--clr-medium-light);">
+                            Turning ideas into functional, user-friendly experiences through clean code and creative design.
+                        </p>
+                        <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:20px;">
+                            <a href="#projects" class="continue-button" style="margin-top:0;">View My Work</a>
+                            <a href="#contact" style="display:inline-flex;align-items:center;gap:8px;padding:10px 30px;font-size:1.2em;border:2px solid var(--clr-accent);color:var(--clr-accent);background:transparent;font-weight:600;cursor:pointer;text-decoration:none;transition:0.3s ease-in-out;">Contact Me</a>
+                        </div>
+                        <div style="display:flex;gap:16px;margin-top:10px;">
+                            <a href="https://github.com/win-stdio" target="_blank" rel="noopener" style="color:var(--clr-accent);font-size:1.8em;transition:transform 0.3s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform=''"><i class="bx bxl-github"></i></a>
+                            <a href="https://www.facebook.com/thisiswin" target="_blank" rel="noopener" style="color:var(--clr-accent);font-size:1.8em;transition:transform 0.3s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform=''"><i class="bx bxl-facebook"></i></a>
+                            <a href="mailto:herwindatinguinoo00@gmail.com" style="color:var(--clr-accent);font-size:1.8em;transition:transform 0.3s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform=''"><i class="bx bxl-gmail"></i></a>
+                        </div>
+                    </div>
+                    <div class="homeIMGCon scroll-hidden s-right" style="animation:none;">
+                        <img src="img/compu.gif" alt="Win"
+                             onerror="this.onerror=null;this.src='https://placehold.co/350x350/ff00ff/252525?text=Dev+Portrait'" />
+                    </div>
+                </div>
+                <div class="scroll-down" onclick="document.getElementById('services')?.scrollIntoView({behavior:'smooth'})">
+                    <div class="scroll-down-arrow"></div>
+                    <span class="scroll-down-label">scroll</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ MARQUEE ═══ -->
+        <div class="marquee-wrap">
+            <div class="marquee-track">
+                <div class="marquee-content">
+                    <span>Web Developer</span>
+                    <span class="marquee-dot">✦</span>
+                    <span>UI / UX</span>
+                    <span class="marquee-dot">✦</span>
+                    <span>Creative Thinker</span>
+                    <span class="marquee-dot">✦</span>
+                    <span>Problem Solver</span>
+                    <span class="marquee-dot">✦</span>
+                </div>
+                <div class="marquee-content" aria-hidden="true">
+                    <span>Web Developer</span>
+                    <span class="marquee-dot">✦</span>
+                    <span>UI / UX</span>
+                    <span class="marquee-dot">✦</span>
+                    <span>Creative Thinker</span>
+                    <span class="marquee-dot">✦</span>
+                    <span>Problem Solver</span>
+                    <span class="marquee-dot">✦</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══ SERVICES (Ahmed Ragab style) ═══ -->
+        <section class="secondSection" id="services">
+            <div class="album-page" style="padding-bottom:20px;">
+                <h3 class="scroll-hidden" style="animation:none;font-family:'Caveat',cursive;font-size:1em;color:var(--clr-accent);text-align:center;opacity:0.7;text-transform:uppercase;letter-spacing:4px;margin-bottom:5px;">( SERVICES )</h3>
+                <h2 class="album-title scroll-hidden" style="animation:none;font-size:clamp(2em,5vw,3.2em);">What I Do</h2>
+                <div class="album-title-line scroll-hidden" style="animation:none;margin-bottom:20px;"></div>
+                <p class="scroll-hidden" style="animation:none;text-align:center;max-width:700px;margin:0 auto 20px;color:var(--clr-medium-light);">
+                    I build intuitive, responsive solutions that make your digital presence effortless.
+                </p>
+                <div class="service-grid scroll-stagger">
+                    <div class="service-card scroll-hidden" style="animation:none;">
+                        <div class="sc-number">( 01 )</div>
+                        <h3>Web Development</h3>
+                        <p>I create custom-coded websites tailored to your brand — scalable, fast, and accessible with engaging experiences.</p>
+                        <ul class="sc-features">
+                            <li>Modern Websites</li>
+                            <li>Responsive Design</li>
+                            <li>Performance Optimized</li>
+                        </ul>
+                    </div>
+                    <div class="service-card scroll-hidden" style="animation:none;">
+                        <div class="sc-number">( 02 )</div>
+                        <h3>Creative Solutions</h3>
+                        <p>Turning ideas into functional, user-friendly applications using modern frameworks and clean architecture.</p>
+                        <ul class="sc-features">
+                            <li>UI / UX Focused</li>
+                            <li>Cross-Platform Ready</li>
+                            <li>Clean Code Structure</li>
+                        </ul>
+                    </div>
+                    <div class="service-card scroll-hidden" style="animation:none;">
+                        <div class="sc-number">( 03 )</div>
+                        <h3>Continuous Learning</h3>
+                        <p>Always exploring new tools, frameworks, and best practices to deliver cutting-edge solutions.</p>
+                        <ul class="sc-features">
+                            <li>Modern Frameworks</li>
+                            <li>Best Practices</li>
+                            <li>Innovation Driven</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ ABOUT ═══ -->
+        <section class="secondSection" id="about">
+            <div class="album-page">
+                <h3 class="scroll-hidden" style="animation:none;font-family:'Caveat',cursive;font-size:1em;color:var(--clr-accent);text-align:center;opacity:0.7;text-transform:uppercase;letter-spacing:4px;margin-bottom:5px;">( ABOUT )</h3>
+                <h2 class="album-title scroll-hidden" style="animation:none;font-size:clamp(2em,5vw,3.2em);">About Me</h2>
+                <div class="album-title-line scroll-hidden" style="animation:none;"></div>
+                <div class="aboutWrap">
+                    <div class="aboutImageCon scroll-hidden" style="animation:none;">
+                        <img src="img/formal.jpeg" alt="Herwin D. Datinguinoo"
+                             onerror="this.onerror=null;this.src='https://placehold.co/350x350/ff00ff/252525?text=About+Image'" />
+                        <p class="aboutMotto"><q>Set your heart ablaze.</q></p>
+                    </div>
+                    <div class="about-bio-stats scroll-hidden s-left" style="animation:none;">
+                        <ul>
+                            <li><strong>Age:</strong> 19</li>
+                            <li><strong>Birthdate:</strong> July 23, 2006</li>
+                            <li><strong>Place of Birth:</strong> Dupax Del Norte</li>
+                            <li><strong>Status:</strong> Single</li>
+                        </ul>
+                    </div>
+                    <div class="about-info-con scroll-hidden s-right" style="animation:none;">
+                        <div class="aboutText">
+                            <p>Hello! I'm <b>Herwin D. Datinguinoo</b>. I am currently in my 2nd year at NVSU, majoring in Web Mobile Development. I'm also an ROTC Graduate and was an athlete during my high school years. I love transforming ideas into functional designs using HTML, CSS, JavaScript, and Java. My goal is to turn my innovative ideas into real, user-friendly applications and become a versatile System Engineer or Web Developer.</p>
+                            <p>I'm continuously learning and exploring new tools and frameworks to improve my skills, always seeking the next challenge to expand my expertise and deliver cutting-edge solutions.</p>
+                        </div>
+                        <div class="album-chapter">
+                            <div class="album-chapter-label scroll-hidden" style="animation:none;">
+                                <i class='bx bx-code'></i> My Skills
+                            </div>
+                            <div class="skillsIconCon scroll-stagger">
+                                <i class='bx bxl-java scroll-hidden' style="animation:none;" title="Java"></i>
+                                <i class='bx bxl-javascript scroll-hidden' style="animation:none;" title="JavaScript"></i>
+                                <i class='bx bxs-file-json scroll-hidden' style="animation:none;" title="JSON"></i>
+                                <i class='bx bxl-html5 scroll-hidden' style="animation:none;" title="HTML"></i>
+                            </div>
+                        </div>
+                        <div class="album-chapter">
+                            <div class="album-chapter-label scroll-hidden" style="animation:none;">
+                                <i class='bx bx-award'></i> My Certificates
+                            </div>
+                            <div class="certificateCon scroll-hidden" style="animation:none;">
+                                <ul>
+                                    <li>Internet of Things</li>
+                                    <li>Emerging Technologies</li>
+                                    <li>Current Trends in IT Research</li>
+                                    <li>The Rise of the Machines</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ PROJECTS ═══ -->
+        <section class="thirdSection" id="projects">
+            <div class="album-page">
+                <h3 class="scroll-hidden" style="animation:none;font-family:'Caveat',cursive;font-size:1em;color:var(--clr-accent);text-align:center;opacity:0.7;text-transform:uppercase;letter-spacing:4px;margin-bottom:5px;">( PROJECTS )</h3>
+                <h2 class="album-title scroll-hidden" style="animation:none;font-size:clamp(2em,5vw,3.2em);">My Projects</h2>
+                <div class="album-title-line scroll-hidden" style="animation:none;"></div>
+                <div class="album-chapter scroll-hidden" style="animation:none;">
+                    <div class="album-chapter-label">
+                        <i class='bx bx-code-block'></i> Prototypes
+                    </div>
+                    <div class="project-grid scroll-stagger">
+                        <div class="project-item scroll-hidden" style="animation:none;">
+                            <i class='bx bx-code-block'></i>
+                            <h3>TicTacToe</h3>
+                            <p>Built using HTML, CSS, and JavaScript during Senior High School.</p>
+                            <a href="#" title="View TicTacToe Project">
+                                <img src="img/XOX.png" alt="TicTacToe Project Screenshot"
+                                     style="width:100%;max-width:300px;height:auto;margin-top:15px;border-radius:5px;">
+                            </a>
+                        </div>
+                        <div class="project-item scroll-hidden" style="animation:none;">
+                            <i class='bx bx-mobile-alt'></i>
+                            <h3>Interactive Map</h3>
+                            <p>A simple webpage prototype showcasing the Map of the INTE and CS Building.</p>
+                            <a href="#" title="View Interactive Map Project">
+                                <img src="img/IM.png" alt="Interactive Map Project Screenshot"
+                                     style="width:100%;max-width:300px;height:auto;margin-top:15px;border-radius:5px;">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ INTERESTS ═══ -->
+        <section class="secondSection" id="interests">
+            <div class="album-page">
+                <h3 class="scroll-hidden" style="animation:none;font-family:'Caveat',cursive;font-size:1em;color:var(--clr-accent);text-align:center;opacity:0.7;text-transform:uppercase;letter-spacing:4px;margin-bottom:5px;">( HOBBIES )</h3>
+                <h2 class="album-title scroll-hidden" style="animation:none;font-size:clamp(2em,5vw,3.2em);">My Hobbies</h2>
+                <div class="album-title-line scroll-hidden" style="animation:none;"></div>
+                <div class="album-chapter">
+                    <div class="album-chapter-label scroll-hidden" style="animation:none;">
+                        <i class='bx bx-music'></i> Music
+                    </div>
+                    <div class="polaroid-grid scroll-stagger">
+                        <div class="polaroid scroll-hidden" style="animation:none;" data-title="Hidden Talent" data-desc="The talent that always be hidden">
+                            <video class="polaroid-img" controls preload="metadata">
+                                <source src="vid/sintonado.mp4" type="video/mp4">
+                            </video>
+                            <div class="polaroid-caption">
+                                <h3>Hidden Talent</h3>
+                                <p>The talent that always be hidden</p>
+                            </div>
+                        </div>
+                        <div class="polaroid scroll-hidden" style="animation:none;" data-title="Relapse" data-desc="Mostly relapsing is the most I always do, everytime.">
+                            <video class="polaroid-img" controls preload="metadata">
+                                <source src="vid/arayMo.mp4" type="video/mp4">
+                            </video>
+                            <div class="polaroid-caption">
+                                <h3>Relapse</h3>
+                                <p>Mostly relapsing is the most I always do</p>
+                            </div>
+                        </div>
+                        <div class="polaroid scroll-hidden" style="animation:none;" data-title="Trying to sing Blue" data-desc="I haven't memorized the chord yet.">
+                            <video class="polaroid-img" controls preload="metadata">
+                                <source src="vid/blue.mp4" type="video/mp4">
+                            </video>
+                            <div class="polaroid-caption">
+                                <h3>Trying to sing Blue</h3>
+                                <p>I haven't memorized the chord yet</p>
+                            </div>
+                        </div>
+                        <div class="polaroid scroll-hidden" style="animation:none;" data-title="Beginner Arc" data-desc="A little version of me learning guitar — I sent this to my father.">
+                            <video class="polaroid-img" controls preload="metadata">
+                                <source src="vid/kidversion.mp4" type="video/mp4">
+                            </video>
+                            <div class="polaroid-caption">
+                                <h3>Beginner Arc</h3>
+                                <p>Learning guitar — sent this to my father</p>
+                            </div>
+                        </div>
+                        <div class="polaroid scroll-hidden" style="animation:none;" data-title="Chicken Cover" data-desc="I covered the song titled 'Maging Sino Ka Man.'">
+                            <video class="polaroid-img" controls preload="metadata">
+                                <source src="vid/chicken.mp4" type="video/mp4">
+                            </video>
+                            <div class="polaroid-caption">
+                                <h3>Chicken Cover</h3>
+                                <p>Covered "Maging Sino Ka Man"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="album-chapter">
+                    <div class="album-chapter-label scroll-hidden" style="animation:none;">
+                        <i class='bx bx-football'></i> Sports
+                    </div>
+                    <div class="polaroid-grid scroll-stagger">
+                        <div class="polaroid scroll-hidden" style="animation:none;" data-title="Soccer is fun" data-desc="This is a short video captured by Sir Reniel.">
+                            <video class="polaroid-img" controls preload="metadata">
+                                <source src="vid/soccer.mp4" type="video/mp4">
+                            </video>
+                            <div class="polaroid-caption">
+                                <h3>Soccer is fun</h3>
+                                <p>Captured by Sir Reniel</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ ALBUM ═══ -->
+        <section class="secondSection" id="album">
+            <div class="album-page">
+                <h3 class="scroll-hidden" style="animation:none;font-family:'Caveat',cursive;font-size:1em;color:var(--clr-accent);text-align:center;opacity:0.7;text-transform:uppercase;letter-spacing:4px;margin-bottom:5px;">( ALBUM )</h3>
+                <h2 class="album-title scroll-hidden" style="animation:none;font-size:clamp(2em,5vw,3.2em);">📸 My Album</h2>
+                <div class="album-title-line scroll-hidden" style="animation:none;"></div>
+
+                <div class="album-chapter">
+                    <div class="album-chapter-label scroll-hidden" style="animation:none;">
+                        <i class='bx bx-heart'></i> Family
+                    </div>
+                    <div class="polaroid-grid scroll-stagger" id="family-grid">
+                        <div class="polaroid scroll-hidden" style="animation:none;" data-title="Picture with Father" data-desc="Our last picture before he went back abroad." data-src="img/picpapa.jpg">
+                            <img class="polaroid-img" src="img/picpapa.jpg" alt="Picture with father"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/350x350/00ffff/252525?text=Papa'">
+                            <div class="polaroid-caption">
+                                <h3>With Father</h3>
+                                <p>Before he went abroad</p>
+                            </div>
+                        </div>
+                        <div class="polaroid scroll-hidden" style="animation:none;" data-title="Picture with Mother" data-desc="One of my favorite photos with Mama and Francess." data-src="img/favpicwithmama.jpg">
+                            <img class="polaroid-img" src="img/favpicwithmama.jpg" alt="With mother"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/350x350/ffff00/252525?text=Mama'">
+                            <div class="polaroid-caption">
+                                <h3>With Mama</h3>
+                                <p>Favorite photo with Mama & Francess</p>
+                            </div>
+                        </div>
+                        <div class="polaroid scroll-hidden" style="animation:none;" data-title="Francess Blooper" data-desc="I took a picture of my sister while she was playing with her tablet." data-src="img/francess.jpg">
+                            <img class="polaroid-img" src="img/francess.jpg" alt="Francess blooper"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/350x350/ff00ff/252525?text=Francess'">
+                            <div class="polaroid-caption">
+                                <h3>Francess</h3>
+                                <p>Caught playing her tablet</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="album-chapter">
+                    <div class="album-chapter-label scroll-hidden" style="animation:none;">
+                        <i class='bx bx-group'></i> Friends
+                    </div>
+                    <div class="polaroid-grid scroll-stagger" id="friends-grid">
+                        <div class="polaroid scroll-hidden" style="animation:none;" data-title="Childhood Friend" data-desc="We always meet up once a year — always during Christmas season." data-src="img/childhood.jpg">
+                            <img class="polaroid-img" src="img/childhood.jpg" alt="Childhood friend"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/350x350/ffff00/252525?text=Childhood'">
+                            <div class="polaroid-caption">
+                                <h3>Childhood BFF</h3>
+                                <p>Every Christmas</p>
+                            </div>
+                        </div>
+                        <div class="polaroid scroll-hidden" style="animation:none;" data-title="Grand Ball with COF" data-desc="A picture with my COF at the Grand Ball." data-src="img/grandball.jpeg">
+                            <img class="polaroid-img" src="img/grandball.jpeg" alt="Grand ball"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/350x350/ffff00/252525?text=Grand+Ball'">
+                            <div class="polaroid-caption">
+                                <h3>Grand Ball</h3>
+                                <p>Best moment with COF</p>
+                            </div>
+                        </div>
+                        <div class="polaroid scroll-hidden" style="animation:none;" data-title="Win and Wil — Dance Contest" data-desc="COF supporting us at the dance event — we won 3rd place!" data-src="img/contest.jpeg">
+                            <img class="polaroid-img" src="img/contest.jpeg" alt="Dance contest"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/350x350/ffff00/252525?text=Contest'">
+                            <div class="polaroid-caption">
+                                <h3>Win & Wil</h3>
+                                <p>3rd place dance contest!</p>
+                            </div>
+                        </div>
+                        <div class="polaroid scroll-hidden" style="animation:none;" data-title="Brothers" data-desc="A picture with my brothers." data-src="img/brothers.jpg">
+                            <img class="polaroid-img" src="img/brothers.jpg" alt="Brothers"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/350x350/ffff00/252525?text=Brothers'">
+                            <div class="polaroid-caption">
+                                <h3>Brothers</h3>
+                                <p>Always got my back</p>
+                            </div>
+                        </div>
+                        <div class="polaroid scroll-hidden" style="animation:none;" data-title="Christmas with COF" data-desc="A picture with my COF — incomplete." data-src="img/chirstmas.jpeg">
+                            <img class="polaroid-img" src="img/chirstmas.jpeg" alt="Christmas bonding"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/350x350/ffff00/252525?text=Christmas'">
+                            <div class="polaroid-caption">
+                                <h3>Bonding</h3>
+                                <p>COF Christmas (incomplete)</p>
+                            </div>
+                        </div>
+                        <div class="polaroid scroll-hidden" style="animation:none;" data-title="College COF" data-desc="My College COF — and it will always be my COF." data-src="img/collegecof.jpg">
+                            <img class="polaroid-img" src="img/collegecof.jpg" alt="College COF"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/350x350/ffff00/252525?text=College+COF'">
+                            <div class="polaroid-caption">
+                                <h3>College COF</h3>
+                                <p>Always will be my COF</p>
+                            </div>
+                        </div>
+                        <div class="polaroid scroll-hidden" style="animation:none;" data-title="ROTC Family" data-desc="My ROTC graduation picture." data-src="img/rotcfam.jpeg">
+                            <img class="polaroid-img" src="img/rotcfam.jpeg" alt="ROTC family"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/350x350/ffff00/252525?text=ROTC+Fam'">
+                            <div class="polaroid-caption">
+                                <h3>ROTC Family</h3>
+                                <p>Graduation day</p>
+                            </div>
+                        </div>
+                        <div class="polaroid scroll-hidden" style="animation:none;" data-title="ROTC Graduation" data-desc="My ROTC graduation picture." data-src="img/rotcgrad.jpg">
+                            <img class="polaroid-img" src="img/rotcgrad.jpg" alt="ROTC graduation"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/350x350/ffff00/252525?text=ROTC+Grad'">
+                            <div class="polaroid-caption">
+                                <h3>ROTC Grad</h3>
+                                <p>Proud moment</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ LIGHTBOX ═══ -->
+        <div class="lightbox-overlay" id="lightbox">
+            <div class="lightbox-inner">
+                <button class="lightbox-close" id="lbClose">&times;</button>
+                <img id="lbImg" src="" alt="">
+                <div class="lightbox-caption">
+                    <h3 id="lbTitle"></h3>
+                    <p id="lbDesc"></p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ═══ CONTACT / FOOTER ═══ -->
+    <footer id="contact">
+        <div class="contact-content">
+            <h3 class="scroll-hidden" style="animation:none;font-family:'Caveat',cursive;font-size:1em;color:var(--clr-accent);text-align:center;opacity:0.7;text-transform:uppercase;letter-spacing:4px;margin-bottom:5px;">( CONTACT )</h3>
+            <h2 class="sectionTitle scroll-hidden" style="animation:none;">Contact Me</h2>
+            <p class="scroll-hidden" style="animation:none;">Let's connect! Feel free to reach out for collaborations or project inquiries.</p>
+            <div class="contact-btns scroll-hidden" style="animation:none;">
+                <a href="mailto:herwindatinguinoo00@gmail.com" class="contact-btn contact-btn--gmail" title="Gmail">
+                    <i class='bx bxl-gmail'></i> Gmail
+                </a>
+                <a href="https://github.com/win-stdio" target="_blank" rel="noopener" class="contact-btn contact-btn--github" title="GitHub">
+                    <i class='bx bxl-github'></i> GitHub
+                </a>
+                <a href="https://www.facebook.com/thisiswin" target="_blank" rel="noopener" class="contact-btn contact-btn--facebook" title="Facebook">
+                    <i class='bx bxl-facebook'></i> Facebook
+                </a>
+                <a href="https://github.com/Weiyhn" target="_blank" rel="noopener" class="contact-btn contact-btn--discord" title="Discord">
+                    <i class='bx bxl-discord-alt'></i> Discord
+                </a>
+            </div>
+            <form class="contact-form scroll-hidden" style="animation:none;" action="https://formsubmit.co/herwindatinguinoo00@gmail.com" method="POST">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <input type="text" name="_subject" placeholder="Subject" required>
+                <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+            <p class="copyright">&copy; 2025 WinPage. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- ═══ SCRIPTS ═══ -->
+
+    <!-- Hamburger overlay toggle -->
     <script>
-        var saved = localStorage.getItem('theme') || 'dark';
-        document.documentElement.setAttribute('data-theme', saved);
+    (function(){
+        var btn = document.getElementById('hamburger');
+        var overlay = document.getElementById('navOverlay');
+        var links = document.querySelectorAll('.nav-overlay-link');
+        var s = document.createElement('style');
+        s.textContent = '.nav-active{border-bottom:2px solid var(--clr-accent);color:var(--clr-accent)!important;font-weight:700;}';
+        document.head.appendChild(s);
+
+        function closeMenu(){
+            if (btn) btn.classList.remove('open');
+            if (overlay) overlay.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        function toggleMenu(){
+            if (btn) btn.classList.toggle('open');
+            if (overlay) overlay.classList.toggle('open');
+            document.body.style.overflow = overlay && overlay.classList.contains('open') ? 'hidden' : '';
+        }
+
+        if (btn && overlay) {
+            btn.addEventListener('click', toggleMenu);
+            overlay.addEventListener('click', closeMenu);
+            links.forEach(function(l){
+                l.addEventListener('click', closeMenu);
+            });
+        }
+    })();
     </script>
-    <script src="protect.js"></script>
+
+    <!-- Theme toggle -->
+    <script>
+    (function(){
+        var html = document.documentElement;
+        var toggle = document.getElementById('themeToggle');
+        if (toggle) {
+            var icon = toggle.querySelector('i');
+            var cur = html.getAttribute('data-theme') || 'dark';
+            if (icon) icon.className = cur === 'dark' ? 'bx bx-moon' : 'bx bx-sun';
+            toggle.addEventListener('click', function(){
+                var c = html.getAttribute('data-theme') || 'dark';
+                var n = c === 'dark' ? 'light' : 'dark';
+                html.setAttribute('data-theme', n);
+                localStorage.setItem('theme', n);
+                if (icon) icon.className = n === 'dark' ? 'bx bx-moon' : 'bx bx-sun';
+            });
+        }
+    })();
+    </script>
+
+    <!-- Scroll-triggered animations -->
+    <script>
+    (function(){
+        if (!window.IntersectionObserver) return;
+        var obs = new IntersectionObserver(function(entries){
+            entries.forEach(function(e){
+                if (e.isIntersecting) {
+                    e.target.classList.add('scroll-visible');
+                    obs.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        function watch(){
+            document.querySelectorAll('.scroll-hidden').forEach(function(el){ obs.observe(el); });
+        }
+        watch();
+        var mo = new MutationObserver(function(){ watch(); });
+        mo.observe(document.body, { childList: true, subtree: true });
+    })();
+    </script>
+
+    <!-- Lightbox -->
+    <script>
+    (function(){
+        var lb = document.getElementById('lightbox');
+        if (!lb) return;
+        var lbImg = document.getElementById('lbImg');
+        var lbTitle = document.getElementById('lbTitle');
+        var lbDesc = document.getElementById('lbDesc');
+        var lbClose = document.getElementById('lbClose');
+        document.querySelectorAll('.polaroid').forEach(function(card){
+            card.addEventListener('click', function(){
+                var src = this.dataset.src;
+                if (src) {
+                    lbImg.src = src;
+                    lbImg.onerror = function(){
+                        var img = this.querySelector('img');
+                        if (img) lbImg.src = img.src;
+                    };
+                }
+                lbTitle.textContent = this.dataset.title || '';
+                lbDesc.textContent = this.dataset.desc || '';
+                lb.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+        function closeLb(){
+            lb.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        lbClose.addEventListener('click', closeLb);
+        lb.addEventListener('click', function(e){ if (e.target === lb) closeLb(); });
+        document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeLb(); });
+    })();
+    </script>
+
+    <!-- Copy protection -->
+    <script>
+    (function(){
+        document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+        document.addEventListener('selectstart', function(e){ e.preventDefault(); });
+        document.addEventListener('dragstart', function(e){ e.preventDefault(); });
+        document.addEventListener('keydown', function(e){
+            var key = e.key.toUpperCase();
+            var ctrl = e.ctrlKey || e.metaKey;
+            if ((ctrl && ['U','S','A','C','P'].includes(key)) || e.key === 'F12' || (ctrl && e.shiftKey && ['I','J','C'].includes(key))) {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            }
+        });
+        document.querySelectorAll('img, video').forEach(function(el){
+            el.setAttribute('draggable', 'false');
+            el.style.pointerEvents = 'none';
+            if (el.tagName === 'VIDEO') el.style.pointerEvents = 'auto';
+        });
+        var wm = document.createElement('div');
+        wm.id = 'wm-overlay';
+        wm.setAttribute('aria-hidden', 'true');
+        wm.innerHTML = Array(40).fill('<span>&copy; WinPage by Herwin D.</span>').join(' ');
+        document.body.appendChild(wm);
+    })();
+    </script>
+
+    <!-- Wei Chat Widget -->
+    <script src="wei.js"></script>
+
+    <!-- Contact form _next -->
+    <script>
+    (function(){
+        var form = document.querySelector('.contact-form');
+        if (form) {
+            var inp = form.querySelector('input[name="_next"]');
+            if (inp) inp.value = window.location.href;
+        }
+    })();
+    </script>
+
 </body>
 </html>
