@@ -16,19 +16,26 @@
         { label: 'CONTACT',   href: '#contact-footer',        active: null },
     ];
 
+    const themeIcon = localStorage.getItem('theme') === 'light' ? 'bx bx-sun' : 'bx bx-moon';
+
     const navHTML = `
     <header class="header_navbar">
         <nav id="navbar" class="hn_wrap">
             <a href="main.html" class="hn_logo"><h1>&lt;WinPage&gt;</h1></a>
-            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-                <span></span><span></span><span></span>
-            </button>
-            <div class="nav_menu" id="navMenu">
-                <ul>
-                    ${navLinks.map(l => `
-                    <li><a href="${l.href}" class="hnLink${l.active === page ? ' nav-active' : ''}">${l.label}</a></li>
-                    `).join('')}
-                </ul>
+            <div class="hn_right-group">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <i class="${themeIcon}"></i>
+                </button>
+                <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
+                <div class="nav_menu" id="navMenu">
+                    <ul>
+                        ${navLinks.map(l => `
+                        <li><a href="${l.href}" class="hnLink${l.active === page ? ' nav-active' : ''}">${l.label}</a></li>
+                        `).join('')}
+                    </ul>
+                </div>
             </div>
         </nav>
     </header>`;
@@ -103,4 +110,50 @@
     style.textContent = `.nav-active { border-bottom: 2px solid var(--clr-accent); color: var(--clr-accent) !important; font-weight: 700; }`;
     document.head.appendChild(style);
 
+    /* ---- Apply saved theme ---- */
+    const saved = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', saved);
+
+    /* ---- Theme toggle (delegated) ---- */
+    document.addEventListener('click', function (e) {
+        var btn = e.target.closest('#themeToggle');
+        if (!btn) return;
+        var html = document.documentElement;
+        var cur = html.getAttribute('data-theme') || 'dark';
+        var next = cur === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        var icon = btn.querySelector('i');
+        if (icon) icon.className = next === 'dark' ? 'bx bx-moon' : 'bx bx-sun';
+    });
+
+})();
+
+/* ============================================================
+   IntersectionObserver — Scroll-triggered animations
+   Runs after shared injection so injected elements are observed
+   ============================================================ */
+(function () {
+    if (!window.IntersectionObserver) return;
+
+    var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('scroll-visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    function observeAll() {
+        document.querySelectorAll('.scroll-hidden').forEach(function (el) {
+            observer.observe(el);
+        });
+    }
+
+    observeAll();
+
+    /* Re-observe if new .scroll-hidden elements are injected later */
+    var mo = new MutationObserver(function () { observeAll(); });
+    mo.observe(document.body, { childList: true, subtree: true });
 })();

@@ -14,18 +14,23 @@
     <header class="header_navbar">
         <nav id="navbar" class="hn_wrap">
             <a href="main.html" class="hn_logo"><h1>&lt;WinPage&gt;</h1></a>
-            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-                <span></span><span></span><span></span>
-            </button>
-            <div class="nav_menu" id="navMenu">
-                <ul>
-                    <li><a href="main.html"              class="hnLink nav-active">HOME</a></li>
-                    <li><a href="base.html#about"         class="hnLink">ABOUT</a></li>
-                    <li><a href="interest.html#interests" class="hnLink">INTERESTS</a></li>
-                    <li><a href="favorite.html#favorite"  class="hnLink">FAVORITE</a></li>
-                    <li><a href="projects.html#projects"  class="hnLink">PROJECTS</a></li>
-                    <li><a href="#contact-footer"         class="hnLink">CONTACT</a></li>
-                </ul>
+            <div class="hn_right-group">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <i class="bx bx-moon"></i>
+                </button>
+                <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
+                <div class="nav_menu" id="navMenu">
+                    <ul>
+                        <li><a href="main.html"              class="hnLink nav-active">HOME</a></li>
+                        <li><a href="base.html#about"         class="hnLink">ABOUT</a></li>
+                        <li><a href="interest.html#interests" class="hnLink">INTERESTS</a></li>
+                        <li><a href="favorite.html#favorite"  class="hnLink">FAVORITE</a></li>
+                        <li><a href="projects.html#projects"  class="hnLink">PROJECTS</a></li>
+                        <li><a href="#contact-footer"         class="hnLink">CONTACT</a></li>
+                    </ul>
+                </div>
             </div>
         </nav>
     </header>
@@ -36,27 +41,102 @@
                 <h1 class="album-title" style="font-size:4.5em;">I'm Win</h1>
                 <div class="album-title-line" style="margin-bottom:40px;"></div>
                 <div class="homeWrap" style="padding-top:0;">
-                    <div class="homeText">
+                    <div class="homeText scroll-hidden" style="animation:none;">
                         <div class="hometext">
                             <span class="homeTextType">A Passionate Web Developer</span>
                         </div>
                         <p>Take a journey through my webpage and discover the intersection of creativity and craftsmanship.</p>
                         <a href="base.html#about" class="continue-button">Learn more about me</a>
                     </div>
-                    <div class="homeIMGCon">
+                    <div class="homeIMGCon scroll-hidden s-right" style="animation:none;">
                         <img src="img/compu.gif" alt="Win"
                              onerror="this.onerror=null;this.src='https://placehold.co/350x350/ff00ff/252525?text=Dev+Portrait'" />
                     </div>
                 </div>
+                <div class="scroll-down" onclick="document.getElementById('aboutSection')?.scrollIntoView({behavior:'smooth'})">
+                    <div class="scroll-down-arrow"></div>
+                    <span class="scroll-down-label">scroll</span>
+                </div>
             </div>
         </section>
+
+        <section id="aboutSection" style="height:1px;opacity:0;"></section>
+
+        <!-- ─── SERVICES SECTION (Ahmed Ragab inspired) ─── -->
+        <section class="secondSection" id="services">
+            <div class="album-page" style="padding-bottom:20px;">
+                <h2 class="album-title scroll-hidden" style="animation:none;">What I Do</h2>
+                <div class="album-title-line scroll-hidden" style="animation:none;"></div>
+                <p class="scroll-hidden" style="animation:none;text-align:center;max-width:700px;margin:0 auto 20px;color:var(--clr-medium-light);">
+                    I build intuitive, responsive solutions that make your digital presence effortless.
+                </p>
+                <div class="service-grid scroll-stagger">
+                    <div class="service-card scroll-hidden" style="animation:none;">
+                        <div class="sc-number">( 01 )</div>
+                        <h3>Web Development</h3>
+                        <p>I create custom-coded websites tailored to your brand — scalable, fast, and accessible with engaging experiences.</p>
+                        <ul class="sc-features">
+                            <li>Modern Websites</li>
+                            <li>Responsive Design</li>
+                            <li>Performance Optimized</li>
+                        </ul>
+                    </div>
+                    <div class="service-card scroll-hidden" style="animation:none;">
+                        <div class="sc-number">( 02 )</div>
+                        <h3>Creative Solutions</h3>
+                        <p>Turning ideas into functional, user-friendly applications using modern frameworks and clean architecture.</p>
+                        <ul class="sc-features">
+                            <li>UI / UX Focused</li>
+                            <li>Cross-Platform Ready</li>
+                            <li>Clean Code Structure</li>
+                        </ul>
+                    </div>
+                    <div class="service-card scroll-hidden" style="animation:none;">
+                        <div class="sc-number">( 03 )</div>
+                        <h3>Continuous Learning</h3>
+                        <p>Always exploring new tools, frameworks, and best practices to deliver cutting-edge solutions.</p>
+                        <ul class="sc-features">
+                            <li>Modern Frameworks</li>
+                            <li>Best Practices</li>
+                            <li>Innovation Driven</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─── MARQUEE (scrolling text inspired by Ahmed Ragab) ─── -->
+        <div class="marquee-wrap">
+            <div class="marquee-track">
+                <div class="marquee-content">
+                    <span>Web Developer</span>
+                    <span class="marquee-dot">✦</span>
+                    <span>UI / UX</span>
+                    <span class="marquee-dot">✦</span>
+                    <span>Creative Thinker</span>
+                    <span class="marquee-dot">✦</span>
+                    <span>Problem Solver</span>
+                    <span class="marquee-dot">✦</span>
+                </div>
+                <div class="marquee-content" aria-hidden="true">
+                    <span>Web Developer</span>
+                    <span class="marquee-dot">✦</span>
+                    <span>UI / UX</span>
+                    <span class="marquee-dot">✦</span>
+                    <span>Creative Thinker</span>
+                    <span class="marquee-dot">✦</span>
+                    <span>Problem Solver</span>
+                    <span class="marquee-dot">✦</span>
+                </div>
+            </div>
+        </div>
     </main>
 
     <script src="shared.js"></script>
     <script src="protect.js"></script>
     <script src="wei.js"></script>
     <script>
-        /* Hamburger for main.html's static nav */
+        /* Hamburger + theme init for main.html static nav */
         (function(){
             var btn = document.getElementById('hamburger');
             var menu = document.getElementById('navMenu');
@@ -66,10 +146,26 @@
                     menu.classList.toggle('open');
                 });
             }
-            /* nav-active style */
             var s = document.createElement('style');
             s.textContent = '.nav-active{border-bottom:2px solid var(--clr-accent);color:var(--clr-accent)!important;font-weight:700;}';
             document.head.appendChild(s);
+
+            /* Theme init (shared.js may not run first on main.html) */
+            var saved = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', saved);
+            var toggle = document.getElementById('themeToggle');
+            if (toggle) {
+                var icon = toggle.querySelector('i');
+                if (icon) icon.className = saved === 'dark' ? 'bx bx-moon' : 'bx bx-sun';
+                toggle.addEventListener('click', function(){
+                    var html = document.documentElement;
+                    var cur = html.getAttribute('data-theme') || 'dark';
+                    var next = cur === 'dark' ? 'light' : 'dark';
+                    html.setAttribute('data-theme', next);
+                    localStorage.setItem('theme', next);
+                    if (icon) icon.className = next === 'dark' ? 'bx bx-moon' : 'bx bx-sun';
+                });
+            }
         })();
     </script>
 </body>

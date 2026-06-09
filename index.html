@@ -25,6 +25,10 @@
         </div>
     </div>
 
+    <script>
+        var saved = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', saved);
+    </script>
     <script src="protect.js"></script>
 </body>
 </html>
