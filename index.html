@@ -25,7 +25,7 @@
                     <i class="bx bx-moon"></i>
                 </button>
                 <!-- Desktop nav -->
-                <div class="nav_menu">
+                <div class="nav_menu" id="navMenu">
                     <ul>
                         <li><a href="#hero"     class="hnLink">HOME</a></li>
                         <li><a href="#services"  class="hnLink">SERVICES</a></li>
@@ -44,18 +44,7 @@
         </nav>
     </header>
 
-    <!-- Full-screen mobile overlay (Ahmed Ragab inspired) -->
-    <div class="nav-overlay" id="navOverlay">
-        <ul>
-            <li><a href="#hero"     class="nav-overlay-link">HOME</a></li>
-            <li><a href="#services"  class="nav-overlay-link">SERVICES</a></li>
-            <li><a href="#about"     class="nav-overlay-link">ABOUT</a></li>
-            <li><a href="#projects"  class="nav-overlay-link">PROJECTS</a></li>
-            <li><a href="#interests" class="nav-overlay-link">INTERESTS</a></li>
-            <li><a href="#album"     class="nav-overlay-link">ALBUM</a></li>
-            <li><a href="#contact"   class="nav-overlay-link">CONTACT</a></li>
-        </ul>
-    </div>
+
 
     <main id="pageContainer">
 
@@ -492,34 +481,26 @@
 
     <!-- ═══ SCRIPTS ═══ -->
 
-    <!-- Hamburger overlay toggle -->
+    <!-- Hamburger toggle -->
     <script>
     (function(){
         var btn = document.getElementById('hamburger');
-        var overlay = document.getElementById('navOverlay');
-        var links = document.querySelectorAll('.nav-overlay-link');
+        var menu = document.getElementById('navMenu');
+        if (btn && menu) {
+            btn.addEventListener('click', function(){
+                btn.classList.toggle('open');
+                menu.classList.toggle('open');
+            });
+            document.addEventListener('click', function(e){
+                if (!btn.contains(e.target) && !menu.contains(e.target)) {
+                    btn.classList.remove('open');
+                    menu.classList.remove('open');
+                }
+            });
+        }
         var s = document.createElement('style');
         s.textContent = '.nav-active{border-bottom:2px solid var(--clr-accent);color:var(--clr-accent)!important;font-weight:700;}';
         document.head.appendChild(s);
-
-        function closeMenu(){
-            if (btn) btn.classList.remove('open');
-            if (overlay) overlay.classList.remove('open');
-            document.body.style.overflow = '';
-        }
-        function toggleMenu(){
-            if (btn) btn.classList.toggle('open');
-            if (overlay) overlay.classList.toggle('open');
-            document.body.style.overflow = overlay && overlay.classList.contains('open') ? 'hidden' : '';
-        }
-
-        if (btn && overlay) {
-            btn.addEventListener('click', toggleMenu);
-            overlay.addEventListener('click', closeMenu);
-            links.forEach(function(l){
-                l.addEventListener('click', closeMenu);
-            });
-        }
     })();
     </script>
 
