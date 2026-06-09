@@ -1212,6 +1212,10 @@ video { pointer-events:auto; }
 @media (max-width:768px) {
     .hamburger { display:flex; }
     .nav_menu { display:none; }
+    .hn_wrap { height: 50px; }
+    .hn_logo > h1 { font-size: 1.1em; }
+    .theme-toggle { width: 30px; height: 30px; font-size: 0.9em; }
+    .hamburger span { width: 20px; height: 2px; }
     .homeText h1 { font-size:2.5em; }
     .homeText .hometext { font-size:1.4em; }
     .sectionTitle { font-size:1.8em; }
@@ -1219,6 +1223,10 @@ video { pointer-events:auto; }
     .project-grid { grid-template-columns:1fr; }
 }
 @media (max-width:480px) {
+    .hn_wrap { height: 44px; }
+    .hn_logo > h1 { font-size: 0.95em; }
+    .theme-toggle { width: 26px; height: 26px; font-size: 0.8em; border-width: 1.5px; }
+    .hamburger span { width: 18px; height: 1.5px; }
     .homeText h1 { font-size:2em; }
     .sectionTitle { font-size:1.5em; }
     .hn_logo h1 { font-size:1.2em; }
