@@ -1,0 +1,3 @@
+# Exclude huge videos to keep deploys fast
+vid/blue.mp4
+vid/sintonado.mp4
