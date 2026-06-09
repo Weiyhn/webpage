@@ -340,21 +340,20 @@ body {
 
 .header_navbar {
     width: 100%;
-    padding: 0 clamp(10px, 5vw, 50px); 
+    padding: 0 clamp(10px, 4vw, 30px); 
     position: sticky;
     top: 0;
     z-index: 999;
     background-color: rgba(37, 37, 37, 0.95);
     border-bottom: 2px solid var(--clr-accent);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    /* Add a slight fade-in on load */
     opacity: 0;
     animation: fadeIn 0.5s ease 0.1s forwards;
 }
 
 .hn_wrap {
     width: 100%;
-    height: 80px;
+    height: 60px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -369,12 +368,13 @@ body {
 
 .hn_logo > h1 {
     font-weight: 700;
+    font-size: 1.3em;
 }
 
 .nav_menu > ul {
     display: flex;
     list-style: none;
-    gap: 30px;
+    gap: 20px;
 }
 
 .nav_menu > ul > li {
@@ -384,7 +384,7 @@ body {
 }
 
 .nav_menu a {
-    font-size: 14px;
+    font-size: 13px;
     color: var(--clr-light);
     transition: 0.3s linear;
 }
@@ -404,10 +404,10 @@ body {
 }
 
 /* Link Hover State */
-.nav_menu a:hover {
-    border-bottom: 1px solid var(--clr-accent);
-    padding: 3px 10px;
-}
+    .nav_menu a:hover {
+        border-bottom: 1px solid var(--clr-accent);
+        padding: 2px 8px;
+    }
 
 
 /* ------------------------------------------------------------- */
